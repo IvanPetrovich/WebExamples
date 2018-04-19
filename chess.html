@@ -1,29 +1,28 @@
 <html>
 	<head>
-<!--		<link rel="stylesheet" type="text/css" href="style.css" /> -->
 	</head>
 	<body>
 	   
 	   <script>
 			var table = "<table id='tableChess'>";
-			var tr=1;//счетчик по строкам
+			var tr=1;//row count
 			var letters = {1:"A", 2:"B", 3:"C", 4:"D", 5:"E", 6:"F", 7:"G", 8:"H"};
 			while(tr<=10){
 				table+="<tr>";
-				var td=1;
+				var td=1;//column count
 				while(td<=10){
-					if ( tr == 1 && td>1 && td<10){//буквы для меня 
+					if ( tr == 1 && td>1 && td<10){ 
 						table += "<td class='rotating digitsLetters' >" + (letters[td-1]) + "</td>";
-					} else if ( tr == 10 && td>1 && td<10) {//буквы для оппонента
+					} else if ( tr == 10 && td>1 && td<10) {
 						table += "<td class='digitsLetters'>" + (letters[td-1]) + "</td>";
 						
-					} else if (td == 1 && tr>1 && tr<10 ) { //цифры для меня
+					} else if (td == 1 && tr>1 && tr<10 ) {
 						table += "<td class='digitsLetters'>" + (10-tr) + "</td>"
-					} else if (td == 10 && tr>1 && tr<10 ) {//цифры для оппонента	
+					} else if (td == 10 && tr>1 && tr<10 ) {
 						table += "<td class='rotating digitsLetters' >" + (10-tr) + "</td>"
 						
 						
-					} else if ( ( tr==1 && td==1 ) //угловые элементы
+					} else if ( ( tr==1 && td==1 )
 								|| ( tr==1 && td==10 )
 								|| ( tr==10 && td==1 )
 								|| ( tr==10 && td==10 )
@@ -31,7 +30,7 @@
 								){
 						table+="<td class='letters digitsLetters'>"+setFigure(tr,td)+"</td>";
 					} else {
-						if(td%2==0 && tr%2==1||td%2==1 && tr%2==0){//игровое поле
+						if(td%2==0 && tr%2==1||td%2==1 && tr%2==0){
 							table+="<td class='greySquare'>"+setFigure(tr,td)+"</td>";
 						}
 						else{
@@ -48,54 +47,54 @@
 			document.write(table);
 			
 			var tableChess = document.getElementById('tableChess');
-			tableChess.border = 3;//толщина таблицы
+			tableChess.border = 3;
 			
-			//серые клетки на поле
+			
 			var greySquares = document.getElementsByClassName('greySquare');
 			for(var i=0;i<greySquares.length;i++) {
 				greySquares[i].style.backgroundColor = "grey";
 			}
 			
-			//поворот
+			
 			var rotatingElements = document.getElementsByClassName('rotating');
 			for(var i=0;i<rotatingElements.length;i++) {
 				rotatingElements[i].style.webkitTransform = "rotate(180deg)";
 			}
 			
-			//коричневая граница
+			
 			var digitsLetters = document.getElementsByClassName('digitsLetters');
 			for(var i=0;i<digitsLetters.length;i++) {
 				digitsLetters[i].style.backgroundColor = 'chocolate';
 			}
 			
 			function setFigure(tr,td){
-				if (tr == 8){//белая пешка
+				if (tr == 8){//white pawn
 					return "&#9817;";
-				} else if (tr == 3){//чёрная пешка
+				} else if (tr == 3){//black pawn
 					return "&#9823;";
-				} else if (tr == 2 && ( td==3||td==8) ){//чёрный конь
+				} else if (tr == 2 && ( td==3||td==8) ){//black horse
 					return "&#9822;";
-				} else if (tr == 2 && ( td==4||td==7)){//чёрный слон
+				} else if (tr == 2 && ( td==4||td==7)){//black bishop
 					return "&#9821;";
-				} else if (tr == 2 && ( td==2||td==9)){//чёрная ладья
+				} else if (tr == 2 && ( td==2||td==9)){//black rook
 					return "&#9820;";
-				} else if (tr == 2 && ( td==5 )){//чёрный ферзь
+				} else if (tr == 2 && ( td==5 )){//black queen
 					return "&#9819;";
-				} else if (tr == 2 && ( td==6 )){//чёрный король
+				} else if (tr == 2 && ( td==6 )){//black king
 					return "&#9818;";
-				} else if (tr == 9 && ( td==3||td==8)){//белый конь
+				} else if (tr == 9 && ( td==3||td==8)){//white horse
 					return "&#9816;";
-				} else if (tr == 9 && ( td==4||td==7)){//белый слон
+				} else if (tr == 9 && ( td==4||td==7)){//white bishop
 					return "&#9815;";
-				} else if (tr == 9 && ( td==2||td==9)){//белая ладья
+				} else if (tr == 9 && ( td==2||td==9)){//white rook
 					return "&#9814;";
-				} else if (tr == 9 && ( td==5 )){//белый ферзь
+				} else if (tr == 9 && ( td==5 )){//white queen
 					return "&#9813;";
-				} else if (tr == 9&& ( td==6 )){//белый король
+				} else if (tr == 9&& ( td==6 )){//white king
 					return "&#9812;";
 				}
 				else{
-					return "&#8195;";//пустое поле
+					return "&#8195;";//blank
 				}
 			
 			}
