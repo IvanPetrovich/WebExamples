@@ -5,11 +5,11 @@
 	   
 	   <script>
 			var table = "<table id='tableChess'>";
-			var tr=1;//row count
+			var tr=1;//row counter
 			var letters = {1:"A", 2:"B", 3:"C", 4:"D", 5:"E", 6:"F", 7:"G", 8:"H"};
 			while(tr<=10){
 				table+="<tr>";
-				var td=1;//column count
+				var td=1;//column counter
 				while(td<=10){
 					if ( tr == 1 && td>1 && td<10){ 
 						table += "<td class='rotating digitsLetters' >" + (letters[td-1]) + "</td>";
